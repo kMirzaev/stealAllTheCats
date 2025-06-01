@@ -1,0 +1,230 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>StealAllTheCats</name>
+    </assembly>
+    <members>
+        <member name="T:StealAllTheCats.Controllers.CatsController">
+            <summary>
+            Handles cat-related API endpoints.
+            </summary>
+        </member>
+        <member name="M:StealAllTheCats.Controllers.CatsController.#ctor(StealAllTheCats.Services.CatService)">
+            <summary>
+            Initializes a new instance of the <see cref="T:StealAllTheCats.Controllers.CatsController"/> class.
+            </summary>
+            <param name="catService">The cat service.</param>
+        </member>
+        <member name="M:StealAllTheCats.Controllers.CatsController.FetchCats">
+            <summary>
+            Fetches 25 cat images from TheCatAPI and saves them to the database (no duplicates).
+            </summary>
+            <returns>The list of newly added cats.</returns>
+        </member>
+        <member name="M:StealAllTheCats.Controllers.CatsController.GetCatByCatId(System.String)">
+            <summary>
+            Retrieves a cat by its external Cat API ID.
+            </summary>
+            <param name="catId">The external cat API ID.</param>
+            <returns>The cat entity, or 404 if not found.</returns>
+        </member>
+        <member name="M:StealAllTheCats.Controllers.CatsController.GetCats(System.String,System.Int32,System.Int32)">
+            <summary>
+            Retrieves cats with optional tag filter and paging support.
+            </summary>
+            <param name="tag">Optional tag to filter cats.</param>
+            <param name="page">Page number (default 1).</param>
+            <param name="pageSize">Page size (default 10, max 100).</param>
+            <returns>Paged list of cats.</returns>
+        </member>
+        <member name="T:StealAllTheCats.Data.ApplicationDbContext">
+            <summary>
+            The Entity Framework Core database context for the application.
+            </summary>
+        </member>
+        <member name="M:StealAllTheCats.Data.ApplicationDbContext.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{StealAllTheCats.Data.ApplicationDbContext})">
+            <summary>
+            Initializes a new instance of the <see cref="T:StealAllTheCats.Data.ApplicationDbContext"/> class.
+            </summary>
+            <param name="options">The options to be used by a <see cref="T:Microsoft.EntityFrameworkCore.DbContext"/>.</param>
+        </member>
+        <member name="P:StealAllTheCats.Data.ApplicationDbContext.Cats">
+            <summary>
+            Gets the cats table.
+            </summary>
+        </member>
+        <member name="P:StealAllTheCats.Data.ApplicationDbContext.Tags">
+            <summary>
+            Gets the tags table.
+            </summary>
+        </member>
+        <member name="M:StealAllTheCats.Data.ApplicationDbContext.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            Configures the entity relationships and schema.
+            </summary>
+            <param name="modelBuilder">The model builder.</param>
+        </member>
+        <member name="T:StealAllTheCats.Entities.CatEntity">
+            <summary>
+            Represents a cat entity stored in the database.
+            </summary>
+        </member>
+        <member name="P:StealAllTheCats.Entities.CatEntity.Id">
+            <summary>
+            Gets or sets the database ID.
+            </summary>
+        </member>
+        <member name="P:StealAllTheCats.Entities.CatEntity.CatId">
+            <summary>
+            Gets or sets the external cat API ID.
+            </summary>
+        </member>
+        <member name="P:StealAllTheCats.Entities.CatEntity.Width">
+            <summary>
+            Gets or sets the image width.
+            </summary>
+        </member>
+        <member name="P:StealAllTheCats.Entities.CatEntity.Height">
+            <summary>
+            Gets or sets the image height.
+            </summary>
+        </member>
+        <member name="P:StealAllTheCats.Entities.CatEntity.ImageUrl">
+            <summary>
+            Gets or sets the image URL.
+            </summary>
+        </member>
+        <member name="P:StealAllTheCats.Entities.CatEntity.Created">
+            <summary>
+            Gets or sets the creation date.
+            </summary>
+        </member>
+        <member name="P:StealAllTheCats.Entities.CatEntity.Tags">
+            <summary>
+            Gets or sets the tags associated with the cat.
+            </summary>
+        </member>
+        <member name="T:StealAllTheCats.Entities.TagEntity">
+            <summary>
+            Represents a tag entity associated with cats.
+            </summary>
+        </member>
+        <member name="P:StealAllTheCats.Entities.TagEntity.Id">
+            <summary>
+            Gets or sets the database ID.
+            </summary>
+        </member>
+        <member name="P:StealAllTheCats.Entities.TagEntity.Name">
+            <summary>
+            Gets or sets the tag name.
+            </summary>
+        </member>
+        <member name="P:StealAllTheCats.Entities.TagEntity.Created">
+            <summary>
+            Gets or sets the creation date.
+            </summary>
+        </member>
+        <member name="P:StealAllTheCats.Entities.TagEntity.Cats">
+            <summary>
+            Gets or sets the collection of cats associated with this tag.
+            </summary>
+        </member>
+        <member name="T:StealAllTheCats.Migrations.InitialCreate">
+            <inheritdoc />
+        </member>
+        <member name="M:StealAllTheCats.Migrations.InitialCreate.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:StealAllTheCats.Migrations.InitialCreate.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:StealAllTheCats.Migrations.InitialCreate.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:StealAllTheCats.Migrations.StoreImageUrl">
+            <inheritdoc />
+        </member>
+        <member name="M:StealAllTheCats.Migrations.StoreImageUrl.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:StealAllTheCats.Migrations.StoreImageUrl.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:StealAllTheCats.Migrations.StoreImageUrl.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:StealAllTheCats.Models.CatApiModel">
+            <summary>
+            Represents the cat data model returned by the external Cat API.
+            </summary>
+        </member>
+        <member name="P:StealAllTheCats.Models.CatApiModel.Id">
+            <summary>
+            Gets or sets the external cat ID.
+            </summary>
+        </member>
+        <member name="P:StealAllTheCats.Models.CatApiModel.Url">
+            <summary>
+            Gets or sets the image URL.
+            </summary>
+        </member>
+        <member name="P:StealAllTheCats.Models.CatApiModel.Width">
+            <summary>
+            Gets or sets the image width.
+            </summary>
+        </member>
+        <member name="P:StealAllTheCats.Models.CatApiModel.Height">
+            <summary>
+            Gets or sets the image height.
+            </summary>
+        </member>
+        <member name="P:StealAllTheCats.Models.CatApiModel.Breeds">
+            <summary>
+            Gets or sets the list of breeds.
+            </summary>
+        </member>
+        <member name="T:StealAllTheCats.Models.CatApiModel.Breed">
+            <summary>
+            Represents a breed object from the Cat API.
+            </summary>
+        </member>
+        <member name="P:StealAllTheCats.Models.CatApiModel.Breed.Temperament">
+            <summary>
+            Gets or sets the temperament string.
+            </summary>
+        </member>
+        <member name="T:StealAllTheCats.Services.CatService">
+            <summary>
+            Provides operations for fetching and managing cat entities.
+            </summary>
+        </member>
+        <member name="M:StealAllTheCats.Services.CatService.#ctor(System.Net.Http.HttpClient,StealAllTheCats.Data.ApplicationDbContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:StealAllTheCats.Services.CatService"/> class.
+            </summary>
+            <param name="httpClient">The HTTP client.</param>
+            <param name="context">The database context.</param>
+        </member>
+        <member name="M:StealAllTheCats.Services.CatService.FetchCatsAsync">
+            <summary>
+            Fetches 25 cats from the external API and saves new ones to the database.
+            </summary>
+            <returns>The list of newly added cats.</returns>
+        </member>
+        <member name="M:StealAllTheCats.Services.CatService.GetCatByCatIdAsync(System.String)">
+            <summary>
+            Retrieves a cat by its database ID.
+            </summary>
+            <returns>The cat entity, or null if not found.</returns>
+        </member>
+        <member name="M:StealAllTheCats.Services.CatService.GetCatsAsync(System.String,System.Int32,System.Int32)">
+            <summary>
+            Retrieves cats with optional tag filter and paging support.
+            </summary>
+            <param name="tag">Optional tag to filter cats.</param>
+            <param name="page">Page number.</param>
+            <param name="pageSize">Page size.</param>
+            <returns>List of cats matching the criteria.</returns>
+        </member>
+    </members>
+</doc>
